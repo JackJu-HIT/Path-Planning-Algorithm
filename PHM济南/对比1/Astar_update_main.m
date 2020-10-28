@@ -1,27 +1,28 @@
-%*******µÚÈı½×¶Î¸Ä½øA*Ëã·¨Ö÷³ÌĞò***********%%%
+%Author:Jack ju
+%*******ç¬¬ä¸‰é˜¶æ®µæ”¹è¿›A*ç®—æ³•ä¸»ç¨‹åº***********%%%
 function [improved_length TA_length]=search_B(value_B)
 % value_B=1;
 disp('A Star Path Planing start!!') 
-p.start=[1 1];  %ÆğÊ¼µã
-p.goal=[40 40];  %Ä¿±êµã
-p.XYMAX=40; %%´ú±íÎÒÃÇÒª»­Ò»¸öµØÍ¼µÄ³¤ºÍ¿í
-obstacle=GetBoundary(p);%µÃµ½±ß½çÊı¾İ
-nObstacle=100;%ÔÚµØÍ¼ÖĞËæ»ú¼ÓÈë20¸öÕÏ°­Îï
-obstacle=GetObstacle(nObstacle,p)%ÕÏ°­ÎïºÍ±ß½ç
-%ÖÕµãÉèÖÃÎª£¨40,40£©Ê±¼ä¼õÉÙÁËºÜ¶à µ«ÊÇÂ·¾¶³¤¶ÈĞ¡µÄ
+p.start=[1 1];  %èµ·å§‹ç‚¹
+p.goal=[40 40];  %ç›®æ ‡ç‚¹
+p.XYMAX=40; %%ä»£è¡¨æˆ‘ä»¬è¦ç”»ä¸€ä¸ªåœ°å›¾çš„é•¿å’Œå®½
+obstacle=GetBoundary(p);%å¾—åˆ°è¾¹ç•Œæ•°æ®
+nObstacle=100;%åœ¨åœ°å›¾ä¸­éšæœºåŠ å…¥20ä¸ªéšœç¢ç‰©
+obstacle=GetObstacle(nObstacle,p)%éšœç¢ç‰©å’Œè¾¹ç•Œ
+%ç»ˆç‚¹è®¾ç½®ä¸ºï¼ˆ40,40ï¼‰æ—¶é—´å‡å°‘äº†å¾ˆå¤š ä½†æ˜¯è·¯å¾„é•¿åº¦å°çš„
 obstacle=[20,11;20,22;35,39;14,29;18,34;39,17;2,19;39,22;8,8;27,30;23,20;27,26;14,12;25,6;32,19;1,14;3,32;39,31;26,27;9,5;16,1;5,22;11,11;10,38;13,39;6,11;20,20;5,36;35,24;4,35;37,38;16,22;2,29;14,23;29,1;32,18;22,26;27,21;36,15;2,37;12,33;2,34;8,15;29,24;29,35;35,37;23,27;3,8;37,26;32,3;28,27;28,29;25,26;25,24;21,20;;15,16;15,14;]
-%ÖÕµãÉèÖÃÎª£¨20,20£© µ«ÊÇÊ±¼ä¼Ó³¤ÁË £¬Â·¾¶³¤¶È¶ÌÁË
+%ç»ˆç‚¹è®¾ç½®ä¸ºï¼ˆ20,20ï¼‰ ä½†æ˜¯æ—¶é—´åŠ é•¿äº† ï¼Œè·¯å¾„é•¿åº¦çŸ­äº†
 %obstacle=[19,2;20,18;1,10;10,12;17,6;5,2;17,17;16,3;13,7;0,12;8,20;18,10;14,20;8,5;13,8;5,14;11,1;20,15;17,8;6,16;14,8;7,6;2,14;5,8;16,2;2,15;11,13;16,1;15,2;3,20;9,10;7,0;10,1;12,3;3,18;18,9;13,11;3,10;11,1;19,18;16,6;14,5;9,12;5,10;11,7;5,13;6,19;18,12;18,6;16,4;19,9;4,1;10,18;13,12;18,4;13,10;8,1;15,17;16,9;12,11;2,11;18,14;1,7;11,2;2,9;8,1;16,15;5,1;18,19;14,15;8,19;5,10;5,5;15,5;1,15;14,20;12,7;15,15;20,2;8,12;5,9;18,15;16,5;9,2;2,9;11,13;4,3;11,9;7,13;6,17;15,6;10,8;16,18;4,14;14,5;1,15;16,6;14,6;19,0]
 [n0 n1]=size(obstacle);
 
-%%%%%¸Ä½øÇ°¸ù¾İÂÛÎÄ¡¯¸Ä½øA_Ëã·¨µÄAGVÂ·¾¶¹æ»®_ÁõÉúÎ°¡®¸Ä½øA*Ëã·¨Ö÷³ÌĞòA*Ëã·¨************
+%%%%%æ”¹è¿›å‰æ ¹æ®è®ºæ–‡â€™æ”¹è¿›A_ç®—æ³•çš„AGVè·¯å¾„è§„åˆ’_åˆ˜ç”Ÿä¼Ÿâ€˜æ”¹è¿›A*ç®—æ³•ä¸»ç¨‹åºA*ç®—æ³•************
  t1=clock;
-[ path3 STEP_a_time ]=AStar_referance(obstacle,p,1);%A*Ëã·¨
+[ path3 STEP_a_time ]=AStar_referance(obstacle,p,1);%A*ç®—æ³•
  t2=clock;
  TA_time=etime(t2,t1);
  
  [x g]=size(path3);
-%  %%ÈßÓà¶Î²âÊÔ³ÌĞò
+%  %%å†—ä½™æ®µæµ‹è¯•ç¨‹åº
 % %  obstacle=[2.5,5;6,12;8,16]
 % % path3=[1,2;2,4;3,6;4,8;5,10;9,18;10,20;11,22];
 % % 
@@ -33,7 +34,7 @@ obstacle=[20,11;20,22;35,39;14,29;18,34;39,17;2,19;39,22;8,8;27,30;23,20;27,26;1
 %     for j=(k+2):1:x
 %     [value]=detect_obstacle(path3(k,:),path3(j,:),obstacle)
 %     if value==0
-%     %%%¼ÇÂ¼ÒªÉ¾µôµÄĞĞºÅ
+%     %%%è®°å½•è¦åˆ æ‰çš„è¡Œå·
 %     c=j-1;
 %     col_num=[col_num,c];
 %     else
@@ -45,7 +46,7 @@ obstacle=[20,11;20,22;35,39;14,29;18,34;39,17;2,19;39,22;8,8;27,30;23,20;27,26;1
 % %         break;
 % %     end
 % end
-% %%%%¸ù¾İcol_numÉ¾³ıÈßÓàµÄĞĞÊı
+% %%%%æ ¹æ®col_numåˆ é™¤å†—ä½™çš„è¡Œæ•°
 % % d=col_num;
 % % b=cumsum(path);
 % col_num=unique(col_num','rows'); 
@@ -73,18 +74,18 @@ hold on
 
 
 
-%%%%*****ÑéÖ¤¸ÃÖ±Ïß´©¹ıµÄÕÏ°­ÎïµÄµã%%
+%%%%*****éªŒè¯è¯¥ç›´çº¿ç©¿è¿‡çš„éšœç¢ç‰©çš„ç‚¹%%
 
 t3=clock;
 [line_obstacle]=test_if_pass_obstacle(p,obstacle);
 t8=clock;
 A_time_test1=etime(t8,t3);
 
-%¼ÆËãÏß¶ÎÉÏÕÏ°­ÎïµÄÆğµãÖÕµã´¦Àí
+%è®¡ç®—çº¿æ®µä¸Šéšœç¢ç‰©çš„èµ·ç‚¹ç»ˆç‚¹å¤„ç†
  r=0.5;
  [path_line_start_ago path_line_goal_ago]=solve_line_circle(r,line_obstacle,p)
  t9=clock;
- %%%¶ÔÉú³ÉºóµÄ¾ÖÓòÆğµãºÍÖÕµã½øĞĞºÏ²¢
+ %%%å¯¹ç”Ÿæˆåçš„å±€åŸŸèµ·ç‚¹å’Œç»ˆç‚¹è¿›è¡Œåˆå¹¶
  
  path_line_start=path_line_start_ago;
  path_line_goal=path_line_goal_ago;
@@ -101,12 +102,12 @@ A_time_test1=etime(t8,t3);
          break;
      end
     if path_line_goal(i,1)==path_line_start(i+1,1)&&path_line_goal(i,2)==path_line_start(i+1,2)
-        %ÏÈ´æºÃ
+        %å…ˆå­˜å¥½
         new_start_x=[new_start_x;path_line_start(i,1)];
         new_start_y=[new_start_y;path_line_start(i,2)];
         new_goal_x=[new_goal_x;path_line_goal(i+1,1)];
         new_goal_y=[new_goal_y;path_line_goal(i+1,2)];
-        %ĞŞ¸ÄÔ­¼Ä´æÆ÷·½±ãºóĞøµÄ´¦Àí
+        %ä¿®æ”¹åŸå¯„å­˜å™¨æ–¹ä¾¿åç»­çš„å¤„ç†
         path_line_start(i+1,1)=path_line_start(i,1);
     elseif i==N9-1
         new_start_x=[new_start_x;path_line_start(i,1);path_line_start(i+1,1)];
@@ -120,7 +121,7 @@ A_time_test1=etime(t8,t3);
         new_goal_y=[new_goal_y;path_line_goal(i,2)];
     end
  end
- %%¼ì²ânewÊÇ·ñĞèÒª´¦Àí 
+ %%æ£€æµ‹newæ˜¯å¦éœ€è¦å¤„ç† 
 [N11 N12]=size(new_start_x)
 if N11>0
     path_line_start_ago=[new_start_x,new_start_y];
@@ -130,7 +131,7 @@ end
  [Goal  STEP_TIME]=deal_line_obstacle(obstacle,path_line_start_ago,path_line_goal_ago,p,value_B)
 t10=clock;
  A_time=etime(t10,t9);
-%   path=AStar(obstacle,p);%A*Ëã·¨
+%   path=AStar(obstacle,p);%A*ç®—æ³•
 Goal1=unique(Goal,'rows'); 
 
 
@@ -142,10 +143,10 @@ m=[X];
 N=[Y];
 plot(m,N,'b','LineWidth',2)
 hold on
-%»æÖÆµØÍ¼ÕÏ°­ÎïÆğµãÖÕµã
+%ç»˜åˆ¶åœ°å›¾éšœç¢ç‰©èµ·ç‚¹ç»ˆç‚¹
 plot(obstacle(:,1),obstacle(:,2),'o')%,p.goal(1),p.goal(2),'v',p.start(1),p.start(2),'ms',X,Y,'.r');
 % figure(1)
-% legend('Ô¤Éè¶¨Æğµã','Ô¤Éè¶¨ÖÕµã','A*Ëã·¨¸Ä½øÇ°¹ì¼£','A*Ëã·¨¸Ä½øºóËã·¨','ÕÏ°­Îï');
+% legend('é¢„è®¾å®šèµ·ç‚¹','é¢„è®¾å®šç»ˆç‚¹','A*ç®—æ³•æ”¹è¿›å‰è½¨è¿¹','A*ç®—æ³•æ”¹è¿›åç®—æ³•','éšœç¢ç‰©');
 legend('Starting point','Terminal point','Traditional A-star algorithm','Improved A-star algorithm','Obstacles');
 
 
@@ -156,20 +157,20 @@ ylabel('y axis')
 
 
 
-%¼ÆËã¸Ä½øÇ°A*·¨Â·¾¶³¤¶È
+%è®¡ç®—æ”¹è¿›å‰A*æ³•è·¯å¾„é•¿åº¦
 N2=size(path3)
 TA_length=0;
 for i=1:1:(N2-1)
    TA_length=TA_length+((path3(i,1)-path3(i+1,1))^2+(path3(i,2)-path3(i+1,2))^2)^(1/2);
 end
-disp(['A*Ëã·¨¸Ä½øÇ°µÄ³¤¶È',TA_length])
+disp(['A*ç®—æ³•æ”¹è¿›å‰çš„é•¿åº¦',TA_length])
 
-%ÈÚºÏËã·¨µÄÂ·¾¶³¤¶È
+%èåˆç®—æ³•çš„è·¯å¾„é•¿åº¦
 N3=size(X)
 A_length=0;
 for i=1:1:(N3-1)
    A_length=A_length+((X(i,1)-X(i+1,1))^2+(Y(i,1)-Y(i+1,1))^2)^(1/2);
 end
-%disp(['A*Ëã·¨¸ÄºóµÄ³¤¶È',A_length])
+%disp(['A*ç®—æ³•æ”¹åçš„é•¿åº¦',A_length])
 improved_length=vpa(A_length)
 end
